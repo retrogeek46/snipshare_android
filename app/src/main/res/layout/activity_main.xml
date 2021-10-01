@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="260dp"
-        android:onClick="keyA"
+        android:onClick="sendMessage"
         android:text="A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,22 +39,37 @@
         android:layout_marginEnd="12dp"
         android:text="B"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/key_C"
+        app:layout_constraintEnd_toStartOf="@+id/key33"
         app:layout_constraintHorizontal_bias="0.584"
         app:layout_constraintStart_toEndOf="@+id/key_A"
         app:layout_constraintTop_toBottomOf="@+id/heading"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/key_C"
+        android:id="@+id/key33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
         android:layout_marginEnd="32dp"
+        android:onClick="sendMessage"
         android:text="C"
+        android:tag="33"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading"
         app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/key_B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heading"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
