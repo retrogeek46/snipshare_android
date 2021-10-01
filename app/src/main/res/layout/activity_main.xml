@@ -26,6 +26,7 @@
         android:layout_marginTop="260dp"
         android:onClick="sendMessage"
         android:text="A"
+        android:tag="33"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading"
@@ -38,6 +39,7 @@
         android:layout_marginTop="260dp"
         android:layout_marginEnd="12dp"
         android:text="B"
+        android:tag="34"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/key33"
         app:layout_constraintHorizontal_bias="0.584"
@@ -53,7 +55,7 @@
         android:layout_marginEnd="32dp"
         android:onClick="sendMessage"
         android:text="C"
-        android:tag="33"
+        android:tag="35"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading"
@@ -71,5 +73,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="Start Server"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heading"
+        app:layout_constraintVertical_bias="0.947" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
