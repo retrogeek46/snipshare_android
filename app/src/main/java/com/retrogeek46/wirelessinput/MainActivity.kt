@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         serverIP = getServerIP()
+//        serverIP = "http://192.168.1.3:3456";
         Log.i(debugTag, "the serverIP is $serverIP")
     }
 
@@ -57,7 +58,9 @@ class MainActivity : AppCompatActivity() {
             } catch (e: Throwable) {
                 ""
             }
-            if (urlResponse == "hi") serverIp = url
+            if (urlResponse == "hi") {
+                serverIp = "http://$ipPrefix.$i:3456"
+            }
             i++
         }
         return serverIp

@@ -12,10 +12,10 @@ object SocketHandler {
     fun setSocket(serverIP:String) {
         try {
             Log.i("wirelessInput", "serverIP in SocketSingleton $serverIP")
-            mSocket = IO.socket("http://192.168.1.9:3456")
+            mSocket = IO.socket(serverIP)
 //            mSocket = IO.socket(serverIP)
         } catch (e: URISyntaxException) {
-
+            Log.i("wirelessInput", e.toString());
         }
     }
 
