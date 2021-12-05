@@ -7,8 +7,7 @@ import android.os.Bundle
 import android.text.format.Formatter
 import android.util.Log
 import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
-import java.net.ConnectException
+import android.widget.EditText
 import java.net.URL
 import kotlin.concurrent.thread
 
@@ -18,19 +17,21 @@ class MainActivity : AppCompatActivity() {
     private var debugTag = "wirelessInput"
     private var mGlobalSocket: io.socket.client.Socket? = null
     private var serverIP = ""
+    lateinit var serverIPEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        serverIP = getServerIP()
+        serverIPEditText = findViewById(R.id.serverIPInput)
+//        serverIP = getServerIP()
 //        serverIP = "http://192.168.1.3:3456";
         Log.i(debugTag, "the serverIP is $serverIP")
     }
 
     fun startServer(view: View) {
 //        Log.i(debugTag, view.tag.toString())
-        SocketHandler.setSocket(serverIP)
+
+        SocketHandler.setSocket(serverIPEditText.text.toString())
         mGlobalSocket = SocketHandler.getSocket()
         mGlobalSocket?.connect()
 //        mGlobalSocket?.emit("fromAndroid", view.tag.toString())
