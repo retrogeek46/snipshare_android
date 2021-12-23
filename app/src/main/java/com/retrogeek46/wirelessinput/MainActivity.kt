@@ -1,31 +1,46 @@
 package com.retrogeek46.wirelessinput
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.wifi.WifiManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.Formatter
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
 import java.net.URL
 import kotlin.concurrent.thread
-
 
 class MainActivity : AppCompatActivity() {
 
     private var debugTag = "wirelessInput"
     private var mGlobalSocket: io.socket.client.Socket? = null
     private var serverIP = ""
+    lateinit var touchpad: View
     lateinit var serverIPEditText: EditText
 
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         serverIPEditText = findViewById(R.id.serverIPInput)
+        touchpad = findViewById(R.id.touchpad)
 //        serverIP = getServerIP()
-//        serverIP = "http://192.168.1.3:3456";
+//        serverIP = "http://192.168.1.7:3456";
         Log.i(debugTag, "the serverIP is $serverIP")
+
+        touchpad.setOnTouchListener{ _, motionEvent ->
+            when (motionEvent.action) {
+                MotionEvent.ACTION_MOVE -> {
+                    Log.i(debugTag, "current pos X: ${motionEvent.x} Y: ${motionEvent.y}")
+                    mGlobalSocket?.emit("draw", motionEvent.x.toString() + "|" + motionEvent.y.toString())
+                }
+            }
+            true
+        }
     }
 
     fun startServer(view: View) {

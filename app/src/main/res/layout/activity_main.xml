@@ -105,4 +105,16 @@
         app:layout_constraintTop_toBottomOf="@+id/heading"
         app:layout_constraintVertical_bias="0.0" />
 
+    <View
+        android:id="@+id/touchpad"
+        android:layout_width="390dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/key_B"
+        app:layout_constraintVertical_bias="0.058"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
