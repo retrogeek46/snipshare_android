@@ -31,12 +31,27 @@ class MainActivity : AppCompatActivity() {
 //        serverIP = getServerIP()
 //        serverIP = "http://192.168.1.7:3456";
         Log.i(debugTag, "the serverIP is $serverIP")
+        var lastX = 0f
+        var lastY = 0f
 
         touchpad.setOnTouchListener{ _, motionEvent ->
             when (motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    lastX = motionEvent.rawX
+                    lastY = motionEvent.rawY
+                    Log.i(debugTag, "actionDown X: $lastX Y: $lastY")
+                }
                 MotionEvent.ACTION_MOVE -> {
-                    Log.i(debugTag, "current pos X: ${motionEvent.x} Y: ${motionEvent.y}")
-                    mGlobalSocket?.emit("draw", motionEvent.x.toString() + "|" + motionEvent.y.toString())
+                    var rawY = motionEvent.rawY
+                    var rawX = motionEvent.rawX
+
+                    var x = lastX - rawX
+                    var y = lastY - rawY
+//                    Log.i(debugTag, "actionMove X: $lastX Y: $lastY")
+                    Log.i(debugTag, "actionMove X: $x Y: $y")
+                    mGlobalSocket?.emit("draw", "$x|$y")
+                    lastX = rawX
+                    lastY = rawY
                 }
             }
             true
@@ -49,11 +64,15 @@ class MainActivity : AppCompatActivity() {
         SocketHandler.setSocket(serverIPEditText.text.toString())
         mGlobalSocket = SocketHandler.getSocket()
         mGlobalSocket?.connect()
-//        mGlobalSocket?.emit("fromAndroid", view.tag.toString())
+        mGlobalSocket?.emit("connected", "Hello!")
     }
 
     fun sendMessage(view: View) {
         mGlobalSocket?.emit("fromAndroid", view.tag.toString())
+    }
+
+    fun startDrawMode(view: View) {
+        mGlobalSocket?.emit("startDraw", touchpad.height.toString() + "|" + touchpad.width.toString())
     }
 
     private fun getServerIP(): String {
